@@ -6,6 +6,19 @@
     <title>Document</title>
 </head>
 <body>
+    <% houses.forEach(function(house) { %>
+        <article>
+           <h2><%= house.street %></h2>
+            <p>€<%= house.price %></p>
+            <p><%= house.house_nr %></p>
+            <p><%= house.nr_addition %></p>
+            <p><%= house.postal_code %></p>
+            <img src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>">
+        </article>
+    <% }) %>       
+
+   
    <h1>hello world</h1>
+   
 </body>
 </html>

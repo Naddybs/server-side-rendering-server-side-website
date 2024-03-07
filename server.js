@@ -4,6 +4,14 @@
 // 1. Importeer het npm pakket express uit de node_modules map
 import express from 'express';
 
+// 7. Hiermee importeer je de fetchJson functie uit het fetch-json.js bestand
+// Deze functie haalt data op van een API en zet het om naar een json object
+import fetchJson from './helpers/fetch-json.js'
+
+// hiermee maak je een constante variabele aan met de url van de API
+// Deze url bevat de data die je wilt ophalen
+const apiUrl  = 'https://fdnd-agency.directus.app/items/f_houses'
+
 // 2. Hiermee maak je een nieuwe express app
 // Deze app is een object met een aantal methodes die je kunt gebruiken om een server te maken en routes te definiëren
 const app = express();
@@ -20,9 +28,34 @@ app.use(express.static('public'))
 
 // 6. hiermee render je de index.ejs pagina
 // De server stuurt de index.ejs pagina terug naar de client
+// De client ontvangt de pagina en ziet de html en css
 app.get('/', function (req, res) {
-    res.render('index')
+    fetchJson(apiUrl).then((apiData)  => {
+        res.render('index', {houses: apiData.data})
+        // console.log(apiData.data)
     })
+})
+
+
+// dit zorgt ervoor dat het werken met request data makkelijker wordt
+    app.use(express.urlencoded({extended: true}))
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 3. Hiermee maak je een nieuwe server op poort 3000
 // De ('app') server luistert naar requests op poort 3000
