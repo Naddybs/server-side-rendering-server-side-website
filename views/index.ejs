@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<%- include('./partials/head') %> 
+
+<h1>Bewaarde huizen</h1>
+
+<container class="houses">
     <% houses.forEach(function(house) { %>
         <article>
+        <img src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>">
            <h2><%= house.street %></h2>
             <p>€<%= house.price %></p>
             <p><%= house.house_nr %></p>
             <p><%= house.nr_addition %></p>
             <p><%= house.postal_code %></p>
-            <img src="https://fdnd-agency.directus.app/assets/<%= house.poster_image %>">
         </article>
     <% }) %>       
+</container>
 
-   
-   <h1>hello world</h1>
    
 </body>
 </html>
